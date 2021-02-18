@@ -1,0 +1,28 @@
+
+server:
+  port: 7011
+
+logging:
+  level:
+    org.springframework.cloud.gateway: trace
+
+spring:
+  application:
+    name: gateway
+  cloud:
+    gateway:
+      routes:
+        - id: before_route
+          uri: http://localhost:8080
+          filters:
+            - StripPrefix=1
+          predicates:
+            - Path=/server1/**
+
+        - id: before_route2
+          uri: http://localhost:8082
+          filters:
+            - StripPrefix=1
+          predicates:
+            - Path=/server2/**
+
