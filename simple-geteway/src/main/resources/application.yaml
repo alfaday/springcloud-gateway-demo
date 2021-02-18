@@ -2,7 +2,6 @@
 server:
   port: 7011
 
-
 logging:
   level:
     org.springframework.cloud.gateway: trace
