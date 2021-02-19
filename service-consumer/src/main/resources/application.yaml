@@ -1,14 +1,17 @@
-
 server:
-  port: 8089
+  port: 8011
+  servlet:
+    context-path: /
 spring:
   application:
-    name: serviceProvider
+    name: serviceConsumer
 eureka:
   instance:
     prefer-ip-address: true
   client:
     fetch-registry: true
     register-with-eureka: true
+    instance:
+      hostname: localhost
     service-url:
       defaultZone: http://localhost:8762/eureka/

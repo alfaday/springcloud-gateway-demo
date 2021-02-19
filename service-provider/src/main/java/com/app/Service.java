@@ -1,18 +1,23 @@
 package com.app;
 
 import org.springframework.http.MediaType;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+@Controller
 public class Service {
 
+
+    @ResponseBody
     @RequestMapping(value = "/info", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public Person findPerson(){
-        Person person=new Person();
+    public String findPerson(){
+        Person person = new Person();
         person.setId(1);
         person.setAge(18);
         person.setName("mike");
-        return person;
+        return "person";
     }
 
 
