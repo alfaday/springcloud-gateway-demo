@@ -6,6 +6,13 @@ logging:
   level:
     org.springframework.cloud.gateway: trace
 
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://localhost:8762/eureka/
+
 spring:
   application:
     name: gateway
@@ -20,7 +27,7 @@ spring:
             - Path=/server1/**
 
         - id: before_route2
-          uri: http://localhost:8082
+          uri: lb://serviceConsumer
           filters:
             - StripPrefix=1
           predicates:
