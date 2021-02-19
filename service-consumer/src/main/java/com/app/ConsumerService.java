@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
 
 @Controller
-public class Consumer {
+public class ConsumerService {
 
     @Autowired
     private RestTemplate restTemplate;
