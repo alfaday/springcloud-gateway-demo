@@ -1,0 +1,17 @@
+
+spring:
+  application:
+    name: eureka-server
+
+server:
+  port: 8762 #服务器端口
+
+eureka:
+  instance:
+    hostname: localhost #eureka实例的主机名
+  client:
+    register-with-eureka: false #不把自己（eureka-server）注册到eureka上（不做高可用的情况下）
+    fetch-registry: false #不从eureka上来获取服务的注册信息（因为本身就是注册中心，消费者就需要获取提供者的信息）
+    service-url:
+      defaultZone: http://localhost:8762/eureka #不指定默认为http://localhost:8761/eureka.client/
+
