@@ -12,12 +12,14 @@ public class ConsumerService {
     @Autowired
     private RestTemplate restTemplate;
 
+    private String providerName = "serviceProvider";
+
     @ResponseBody
     @RequestMapping("/index")
     public String router() {
         // 根据应用名称调用服务
         String json = restTemplate.getForObject(
-                "http://serviceProvider/info", String.class);
+                "http://" + providerName + "/info", String.class);
         return json;
     }
 }
