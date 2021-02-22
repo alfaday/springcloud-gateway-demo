@@ -2,9 +2,11 @@ server:
   port: 8011
   servlet:
     context-path: /
+
 spring:
   application:
     name: serviceConsumer
+
 eureka:
   instance:
     prefer-ip-address: true
@@ -15,3 +17,12 @@ eureka:
       hostname: localhost
     service-url:
       defaultZone: http://localhost:8762/eureka/
+
+
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 5000
+        readTimeout: 5000
+        loggerLevel: basic

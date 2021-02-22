@@ -11,8 +11,10 @@ public class ConsumerService {
 
     @Autowired
     private RestTemplate restTemplate;
+    @Autowired
+    private FeignClient feignClient;
 
-    private String providerName = "serviceProvider";
+    public String providerName = "serviceProvider";
 
     @ResponseBody
     @RequestMapping("/index")
@@ -20,6 +22,18 @@ public class ConsumerService {
         // 根据应用名称调用服务
         String json = restTemplate.getForObject(
                 "http://" + providerName + "/info", String.class);
+        return json;
+    }
+
+    /**
+     * 使用feign调用服务方的接口
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping("/index_feign")
+    public String router2() {
+        // 根据应用名称调用服务
+        String json = feignClient.call();
         return json;
     }
 }
