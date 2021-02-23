@@ -44,12 +44,7 @@ public class ConsumerService {
      * 客户端调用时使用断路器
      * @return
      */
-    @HystrixCommand(fallbackMethod = "dealErr",commandProperties = {
-            @HystrixProperty(name="circuitBreaker.enabled",value = "true"),//开启断路器
-            @HystrixProperty(name="circuitBreaker.requestVolumeThreshold",value = "2"),//打开断路器的单位时间内最小请求数
-            @HystrixProperty(name="circuitBreaker.sleepWindowInMilliseconds",value = "1000"), //开启断路器的单位时间
-            @HystrixProperty(name="circuitBreaker.errorThresholdPercentage",value = "60")//开启断路器的最小失败率60%
-    })
+    @HystrixCommand(fallbackMethod = "dealErr")
     @ResponseBody
     @RequestMapping("/index_hys")
     public String router3() {

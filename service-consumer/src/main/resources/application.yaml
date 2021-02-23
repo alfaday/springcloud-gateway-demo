@@ -26,3 +26,17 @@ feign:
         connectTimeout: 5000
         readTimeout: 5000
         loggerLevel: basic
+
+
+hystrix:
+  command:
+    default:
+      circuitBreaker:
+        sleepWindowInMilliseconds: 3000  #触发熔断的时间窗口单位
+        errorThresholdPercentage: 50  #触发熔断的最小比例
+        requestVolumeThreshold: 3  #出发熔断的最小请求次数
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 4000  #接口超时时间
+
