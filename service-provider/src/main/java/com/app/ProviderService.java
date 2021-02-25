@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.Random;
+
 @Controller
 public class ProviderService {
 
@@ -17,11 +19,22 @@ public class ProviderService {
         person.setId(1);
         person.setAge(18);
         person.setName("mike");
-        try {
-            Thread.sleep(1000*10);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+        System.out.println("$$$$$$$$  req deal sus!!");
+        return "person";
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/random", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public String randomErr(){
+        int a ;
+        Random random = new Random();
+        int x = random.nextInt() % 2;
+        if(x == 1){
+            a = 1;
+        }else {
+            a = 0;
         }
+        System.out.println(100/a);
         System.out.println("$$$$$$$$  req deal sus!!");
         return "person";
     }

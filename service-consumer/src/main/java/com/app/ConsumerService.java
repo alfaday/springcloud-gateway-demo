@@ -50,12 +50,12 @@ public class ConsumerService {
     public String router3() {
         // 根据应用名称调用服务
         String json = restTemplate.getForObject(
-                "http://" + providerName + "/info", String.class);
+                "http://" + providerName + "/random", String.class);
         return json;
     }
 
     public String dealErr(){
-        return "Hystrix 熔断";
+        return "Hystrix 容错处理";
     }
 
 }
