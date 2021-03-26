@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.List;
 import java.util.Random;
 
 @Controller
@@ -15,6 +16,8 @@ public class ProviderService {
     @ResponseBody
     @RequestMapping(value = "/info", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public String findPerson(){
+//        List<InstanceInfo> instances = client.getInstancesById("serviceProvider");
+//        System.out.println("host=" + instances.get(0).getIPAddr() +",service id =" + instances.get(0).getId());
         Person person = new Person();
         person.setId(1);
         person.setAge(18);
