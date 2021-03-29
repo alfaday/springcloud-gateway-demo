@@ -17,21 +17,25 @@ spring:
   application:
     name: gateway
   cloud:
-    gateway:
-      routes:
-        - id: before_route
-          uri: http://localhost:8080
-          filters:
-            - StripPrefix=1
-          predicates:
-            - Path=/server1/**
-
-        - id: before_route2
-          uri: lb://serviceConsumer
-          filters:
-            - StripPrefix=1
-          predicates:
-            - Path=/server2/**
+#    gateway:
+#      routes:
+#        - id: before_route
+#          uri: http://localhost:8089
+#          filters:
+#            - StripPrefix=1
+#          predicates:
+#            - Path=/server1/**
+#
+#        - id: before_route2
+#          uri: lb://serviceConsumer
+#          filters:
+#            - StripPrefix=1
+#          predicates:
+#            - Path=/server2/**
+## 备注 gateway上述路由配置项已经改为由apollo来配置，apollo中的配置示例如下
+## key = spring.cloud.gateway.routes[0].uri ，value = http://localhost:8089
+## key = spring.cloud.gateway.routes[0].filters[0] ,value = StripPrefix=1
+## key = spring.cloud.gateway.routes[0].predicates[0] ,value = Path=/server1/**
 
 
 
