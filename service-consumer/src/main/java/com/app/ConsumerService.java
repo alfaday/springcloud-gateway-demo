@@ -1,6 +1,8 @@
 package com.app;
 
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -10,6 +12,8 @@ import org.springframework.web.client.RestTemplate;
 
 @Controller
 public class ConsumerService {
+
+    private static Logger logger = LoggerFactory.getLogger(ConsumerService.class);
 
     @Autowired
     private RestTemplate restTemplate;
@@ -35,7 +39,10 @@ public class ConsumerService {
     @RequestMapping("/indexFeign")
     public String router2() {
         // 根据应用名称调用服务
-        String json = feignClient.call();
+        UserVO userVO = new UserVO();
+        userVO.setId("01");
+        userVO.setName("test");
+        String json = feignClient.call("01",userVO);
         return json;
     }
 
@@ -43,7 +50,7 @@ public class ConsumerService {
     @RequestMapping("/postTest")
     public String router3(@RequestBody UserVO user) {
         // 根据应用名称调用服务
-        System.out.println("userid="+user.getId());
+        logger.info("userid="+user.getId());
         return "ok";
     }
 

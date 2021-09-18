@@ -1,27 +1,30 @@
 package com.app;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Random;
 
 @Controller
 public class ProviderService {
 
+    private static Logger logger = LoggerFactory.getLogger(ProviderService.class);
 
     @ResponseBody
-    @RequestMapping(value = "/info", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public String findPerson(){
+    @RequestMapping(value = "/info", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    public String findPerson(@RequestParam String id, @RequestBody UserVO userVO){
 //        List<InstanceInfo> instances = client.getInstancesById("serviceProvider");
 //        System.out.println("host=" + instances.get(0).getIPAddr() +",service id =" + instances.get(0).getId());
+        logger.info("id value=" + id);
+        logger.info("uservo=" + userVO.getName());
         Person person = new Person();
         person.setId(1);
         person.setAge(18);
         person.setName("mike");
-        System.out.println("$$$$$$$$  req deal sus!!");
+        logger.info("$$$$$$$$  req deal sus!!");
         return "person";
     }
 
@@ -36,8 +39,8 @@ public class ProviderService {
         }else {
             a = 0;
         }
-        System.out.println(100/a);
-        System.out.println("$$$$$$$$  req deal sus!!");
+        logger.info(""+100/a);
+        logger.info("$$$$$$$$  req deal sus!!");
         return "person";
     }
 
