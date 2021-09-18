@@ -44,17 +44,17 @@ public class AuthAndLogFilter implements GlobalFilter, Ordered {
         StringBuilder logBuilder = new StringBuilder();
         Map<String, String> params = parseRequest(exchange, logBuilder);
         boolean r = checkSignature(params, serverHttpRequest);
-        if(!r) {
-            Map map = new HashMap<>();
-            map.put("code", 2);
-            map.put("message", "签名验证失败");
-            String resp = JSON.toJSONString(map);
-            logBuilder.append(",resp=").append(resp);
-            logger.info(logBuilder.toString());
-            DataBuffer bodyDataBuffer = serverHttpResponse.bufferFactory().wrap(resp.getBytes());
-            serverHttpResponse.getHeaders().add("Content-Type", "text/plain;charset=UTF-8");
-            return serverHttpResponse.writeWith(Mono.just(bodyDataBuffer));
-        }
+//        if(!r) {
+//            Map map = new HashMap<>();
+//            map.put("code", 2);
+//            map.put("message", "签名验证失败");
+//            String resp = JSON.toJSONString(map);
+//            logBuilder.append(",resp=").append(resp);
+//            logger.info(logBuilder.toString());
+//            DataBuffer bodyDataBuffer = serverHttpResponse.bufferFactory().wrap(resp.getBytes());
+//            serverHttpResponse.getHeaders().add("Content-Type", "text/plain;charset=UTF-8");
+//            return serverHttpResponse.writeWith(Mono.just(bodyDataBuffer));
+//        }
 
         DataBufferFactory bufferFactory = serverHttpResponse.bufferFactory();
         ServerHttpResponseDecorator decoratedResponse = new ServerHttpResponseDecorator(serverHttpResponse) {

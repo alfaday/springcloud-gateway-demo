@@ -3,6 +3,7 @@ package com.app;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
@@ -31,13 +32,20 @@ public class ConsumerService {
      * @return
      */
     @ResponseBody
-    @RequestMapping("/index_feign")
+    @RequestMapping("/indexFeign")
     public String router2() {
         // 根据应用名称调用服务
         String json = feignClient.call();
         return json;
     }
 
+    @ResponseBody
+    @RequestMapping("/postTest")
+    public String router3(@RequestBody UserVO user) {
+        // 根据应用名称调用服务
+        System.out.println("userid="+user.getId());
+        return "ok";
+    }
 
     /**
      * 客户端调用时使用断路器
@@ -45,8 +53,8 @@ public class ConsumerService {
      */
     @HystrixCommand(fallbackMethod = "dealErr")
     @ResponseBody
-    @RequestMapping("/index_hys")
-    public String router3() {
+    @RequestMapping("/indexHys")
+    public String router4() {
         // 根据应用名称调用服务
         String json = restTemplate.getForObject(
                 "http://" + providerName + "/random", String.class);
